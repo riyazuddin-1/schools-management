@@ -68,12 +68,15 @@ export default function ShowSchools() {
                 schools.map((school) => (
                   <div key={school.id} className="bg-gray-50 rounded-b-lg shadow">
                     {school.image && (
-                      <Image
-                        src={school.image}
-                        alt={school.name}
-                        className="w-full aspect-video object-cover mb-2 hover:p-2 transition-all ease-in-out cursor-pointer"
-                        onClick={() => setModalImage(school.image!)}
-                      />
+                      <div className="relative w-full aspect-video">
+                        <Image
+                          src={school.image!}
+                          alt={school.name}
+                          fill
+                          className="object-cover rounded-md cursor-pointer hover:p-2 transition-all ease-in-out"
+                          onClick={() => setModalImage(school.image!)}
+                        />
+                      </div>
                     )}
                     <div className="p-4">
                       <h2 className="text-xl font-semibold">{school.name}</h2>
@@ -93,17 +96,29 @@ export default function ShowSchools() {
 
       {/* 🖼️ Modal */}
       {modalImage && (
-        <div
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-          onClick={() => setModalImage(null)}
-        >
-          <Image
-            src={modalImage}
-            alt="Full size"
-            className="max-w-[90%] max-h-[90%] rounded shadow-lg"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>
+<div
+  className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+  onClick={() => setModalImage(null)}
+>
+  <div className="relative w-[90vw] h-[90vh]">
+    <Image
+      src={modalImage!}
+      alt="Full size"
+      fill
+      className="object-contain rounded"
+      onClick={(e) => e.stopPropagation()}
+    />
+    <button
+      type="button"
+      onClick={() => setModalImage(null)}
+      className="absolute top-1 right-1 bg-black text-white border-2 border-white w-8 h-8 rounded-full text-sm cursor-pointer"
+      title="Remove image"
+    >
+      ×
+    </button>
+  </div>
+</div>
+
       )}
     </div>
   );

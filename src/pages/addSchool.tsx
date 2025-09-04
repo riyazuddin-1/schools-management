@@ -168,20 +168,23 @@ const onSubmit: SubmitHandler<FormValues> = async (data) => {
             <p className="text-red-500">Image required.</p>
           )}
           {imagePreview && (
-            <div className="relative inline-block">
-              <Image
-                src={imagePreview}
-                alt="Preview"
-                className="rounded-md w-full max-h-60 object-contain border border-gray-300"
-              />
-              <button
-                type="button"
-                onClick={clearImage}
-                className="absolute top-1 right-1 bg-black text-white w-6 h-6 rounded-full text-sm cursor-pointer"
-                title="Remove image"
-              >
-                ×
-              </button>
+            <div className="relative inline-block w-full max-h-60">
+              <div className="relative w-full h-60 border border-gray-300 rounded-md">
+                <Image
+                  src={imagePreview!}
+                  alt="Preview"
+                  fill
+                  className="object-contain rounded-md"
+                />
+                <button
+                  type="button"
+                  onClick={clearImage}
+                  className="absolute top-1 right-1 bg-black text-white w-6 h-6 rounded-full text-sm cursor-pointer"
+                  title="Remove image"
+                >
+                  ×
+                </button>
+              </div>
             </div>
           )}
         </div>
