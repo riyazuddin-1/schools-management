@@ -138,6 +138,9 @@ const onSubmit: SubmitHandler<FormValues> = async (data) => {
           {...register("contact", { required: true })}
           className="border border-gray-300 rounded-lg outline-0 p-2 w-full"
         />
+        {errors.contact && (
+          <p className="text-red-500">Contact is required</p>
+        )}
 
         <input
           placeholder="Email"
@@ -194,7 +197,7 @@ const onSubmit: SubmitHandler<FormValues> = async (data) => {
           submitState !== 2 ? (
           <button
             type="submit"
-            className="bg-black text-white px-4 h-10 rounded-lg w-full cursor-pointer"
+            className="bg-black text-white px-4 h-10 rounded-lg w-full cursor-pointer disabled:cursor-not-allowed"
             disabled={submitState === 1}
           >
             Submit
