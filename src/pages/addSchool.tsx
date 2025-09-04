@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState, useRef } from "react";
+import Image from "next/image";
 
 type FormValues = {
   name: string;
@@ -22,8 +23,8 @@ export default function AddSchool() {
 
   const [message, setMessage] = useState<string>("");
   const [imagePreview, setImagePreview] = useState<string | null>(null);
-  const [submitState, setSubmitState] = useState<Number>(0); // 0 for regular, 1 for submitting, and 2 for submitted/failed
-  const [animate, setAnimate] = useState<Boolean>(false);
+  const [submitState, setSubmitState] = useState<number>(0); // 0 for regular, 1 for submitting, and 2 for submitted/failed
+  const [animate, setAnimate] = useState<boolean>(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -168,7 +169,7 @@ const onSubmit: SubmitHandler<FormValues> = async (data) => {
           )}
           {imagePreview && (
             <div className="relative inline-block">
-              <img
+              <Image
                 src={imagePreview}
                 alt="Preview"
                 className="rounded-md w-full max-h-60 object-contain border border-gray-300"

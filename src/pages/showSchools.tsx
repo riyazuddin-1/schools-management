@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from 'next/link';
 
 type School = {
@@ -11,7 +12,7 @@ type School = {
 
 export default function ShowSchools() {
   const [schools, setSchools] = useState<School[]>([]);
-  const [loading, setLoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [modalImage, setModalImage] = useState<string | null>(null);
 
   const schoolsList = useRef<School[]>([]);
@@ -67,7 +68,7 @@ export default function ShowSchools() {
                 schools.map((school) => (
                   <div key={school.id} className="bg-gray-50 rounded-b-lg shadow">
                     {school.image && (
-                      <img
+                      <Image
                         src={school.image}
                         alt={school.name}
                         className="w-full aspect-video object-cover mb-2 hover:p-2 transition-all ease-in-out cursor-pointer"
@@ -96,7 +97,7 @@ export default function ShowSchools() {
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
           onClick={() => setModalImage(null)}
         >
-          <img
+          <Image
             src={modalImage}
             alt="Full size"
             className="max-w-[90%] max-h-[90%] rounded shadow-lg"
